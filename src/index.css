@@ -11,6 +11,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  --pastel-dark-green: #8EA895;
+  --pastel-dark-vanilla: #CFC6B0;
+  --pastel-dutch-white:  #E8DABA;
+  --pastel-eggshell: #F0ECD8;
+  --pastel-light-blue: #D3DCE6;
 }
 
 a {
@@ -24,10 +30,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 h1 {
