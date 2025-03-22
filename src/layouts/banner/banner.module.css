@@ -1,0 +1,23 @@
+.bannerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bannerHeader {
+    width: 50%;
+}
+
+.nameCard {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.titleCard {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.summaryCard {
+    padding-top: 10px;
+}
