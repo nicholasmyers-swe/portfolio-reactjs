@@ -1,0 +1,17 @@
+.splitContainer {
+    display: flex;
+}
+
+.leftContainer {
+    position: sticky;
+    top: 80px;
+    height: 100%;
+    min-width: 50%;
+    padding-left: 15%;
+}
+
+.rightContainer {
+    min-width: 50%;
+    padding-top: 18px;
+    padding-right: 15%;
+}

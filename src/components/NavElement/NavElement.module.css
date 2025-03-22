@@ -1,0 +1,8 @@
+.navElement {
+    display: inline-block;
+    margin-top: 3%;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--pastel-dark-green);
+    max-width: fit-content;
+}
