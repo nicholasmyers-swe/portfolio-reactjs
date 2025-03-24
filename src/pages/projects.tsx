@@ -5,9 +5,9 @@ interface ProjectsProps {
 
 const Projects:React.FC<ProjectsProps> = ({ }) => {
     return (
-        <div className="page">
+        <section className="page" id="projects">
             projects
-        </div>
+        </section>
     )
 };
 

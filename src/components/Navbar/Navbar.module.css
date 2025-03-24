@@ -1,13 +1,12 @@
 .navBarContainer {
-    width: 50%;
-    margin-top: 5%;
+    width: 200px;
     display: flex;
+    position: absolute;
     flex-direction: column;
-}
-
-.navBarElement {
-    margin-top: 3%;
-    font-size: small;
-    font-weight: bold;
-    color: var(--pastel-dark-green);
+    background-color: #e6f3ff;
+    margin-top: 170px;
+    margin-left: 340px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    padding-top: 7px;
 }
