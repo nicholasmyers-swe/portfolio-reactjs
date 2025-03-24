@@ -1,8 +1,17 @@
 .navElement {
-    display: inline-block;
-    margin-top: 3%;
+    display: flex;
+    margin-top: 4%;
     font-size: 15px;
-    font-weight: bold;
-    color: var(--pastel-dark-green);
     max-width: fit-content;
+    cursor: pointer;
+}
+
+.noLinkStyle {
+    text-decoration: none;
+    color: inherit;
+}
+
+.noLinkStyle:hover {
+    text-decoration: none;
+    color: inherit;
 }

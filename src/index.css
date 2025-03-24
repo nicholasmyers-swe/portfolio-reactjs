@@ -19,6 +19,7 @@
   --pastel-dutch-white:  #E8DABA;
   --pastel-eggshell: #F0ECD8;
   --pastel-light-blue: #D3DCE6;
+  --transparent-black: rgba(0, 0, 0, 0.75);
 }
 
 a {
@@ -67,7 +68,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #fcfff6;
   }
   a:hover {
     color: #747bff;

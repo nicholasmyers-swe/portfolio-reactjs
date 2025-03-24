@@ -6,10 +6,10 @@ interface ExperienceProps {
 
 const Experience:React.FC<ExperienceProps> = ({ }) => {
     return (
-        <div className="page">
+        <section className="page" id="experience">
             <div className={styles.container}>
             </div>
-        </div>
+        </section>
     )
 };
 

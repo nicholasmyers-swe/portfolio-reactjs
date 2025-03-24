@@ -8,14 +8,14 @@ interface AboutProps {
 const About:React.FC<AboutProps> = ({ }) => {
 
     return (
-        <div className="page">
+        <section className="page" id="about">
             <div className={styles.container}>
                 {loremIpsum(1)}
             </div>
             <div className={`${styles.container} mt-4`}>
                 {loremIpsum(2)}
             </div>
-        </div>
+        </section>
     )
 };
 
