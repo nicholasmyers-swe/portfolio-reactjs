@@ -3,10 +3,13 @@
     display: flex;
     position: absolute;
     flex-direction: column;
-    background-color: #e6f3ff;
+    background-color: var(--dark-bg-secondary);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
     margin-top: 170px;
     margin-left: 340px;
     padding-left: 20px;
     padding-bottom: 15px;
     padding-top: 7px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }

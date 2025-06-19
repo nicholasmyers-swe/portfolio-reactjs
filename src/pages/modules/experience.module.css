@@ -1,7 +1,10 @@
 .container {
-    outline: auto;
+    outline: 1px solid var(--dark-border);
     display: flex;
     flex-direction: column;
     align-items: start;
     min-height: 200vw;
+    background-color: var(--dark-bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
 }
