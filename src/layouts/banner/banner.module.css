@@ -6,23 +6,33 @@
 
 .bannerHeader {
     width: 50%;
-    background-color: #d8e8dd;
+    background-color: var(--dark-bg-secondary);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 40px;
     padding-top: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .nameCard {
     font-size: 45px;
     font-weight: bold;
+    color: var(--dark-text-primary);
+    background: linear-gradient(135deg, var(--dark-accent-blue), var(--dark-accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .titleCard {
     font-size: 24px;
     font-weight: 400;
+    color: var(--dark-text-secondary);
 }
 
 .summaryCard {
     padding-top: 10px;
+    color: var(--dark-text-primary);
 }

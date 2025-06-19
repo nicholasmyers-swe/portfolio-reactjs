@@ -4,14 +4,21 @@
     font-size: 15px;
     max-width: fit-content;
     cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.navElement:hover {
+    background-color: var(--dark-bg-tertiary);
 }
 
 .noLinkStyle {
     text-decoration: none;
-    color: inherit;
+    color: var(--dark-text-primary);
 }
 
 .noLinkStyle:hover {
     text-decoration: none;
-    color: inherit;
+    color: var(--dark-accent-blue);
 }
