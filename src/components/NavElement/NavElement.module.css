@@ -22,3 +22,17 @@
     text-decoration: none;
     color: var(--dark-accent-blue);
 }
+
+.navContent {
+    display: flex;
+    align-items: center;
+}
+
+.scribbleLine {
+    flex-shrink: 0;
+}
+
+.navText {
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
