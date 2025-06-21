@@ -1,17 +1,69 @@
 .splitContainer {
     display: flex;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: flex-start;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: var(--section-spacing) 0;
 }
 
 .leftContainer {
     position: sticky;
-    top: 80px;
-    height: 100%;
-    min-width: 50%;
-    padding-left: 15%;
+    top: clamp(6rem, 10vh, 8rem);
+    flex: 1;
+    min-width: 0; /* Prevents flex item from overflowing */
+    padding-bottom: 2rem;
 }
 
 .rightContainer {
-    min-width: 50%;
-    padding-top: 18px;
-    padding-right: 15%;
+    flex: 1;
+    min-width: 0; /* Prevents flex item from overflowing */
+    padding-top: clamp(1rem, 2vw, 1.125rem);
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+    .splitContainer {
+        gap: clamp(1.5rem, 4vw, 3rem);
+        padding: clamp(2rem, 6vw, 4rem) 0;
+    }
+    
+    .leftContainer {
+        top: clamp(5rem, 8vh, 7rem);
+    }
+    
+    .rightContainer {
+        padding-top: clamp(0.75rem, 1.5vw, 1rem);
+    }
+}
+
+/* Mobile - Stack vertically */
+@media (max-width: 768px) {
+    .splitContainer {
+        flex-direction: column;
+        gap: clamp(1.5rem, 6vw, 2rem);
+        padding: clamp(1.5rem, 8vw, 2rem) 1rem;
+    }
+    
+    .leftContainer {
+        position: relative;
+        top: auto;
+        width: 100%;
+        padding-bottom: 0;
+        order: 1; /* Banner/intro content first on mobile */
+    }
+    
+    .rightContainer {
+        width: 100%;
+        padding-top: 0;
+        order: 2; /* Main content second on mobile */
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .splitContainer {
+        gap: 1.5rem;
+        padding: 1.5rem 0.5rem;
+    }
 }
