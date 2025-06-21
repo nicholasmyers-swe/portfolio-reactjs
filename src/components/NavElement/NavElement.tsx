@@ -10,10 +10,9 @@ type NavElementProps = {
 
 type AnimationState = 'inactive' | 'selecting' | 'active' | 'deselecting';
 
-// Animation constants
 const ANIMATION_TIMINGS = {
-  SELECTION_DELAY: 100,
-  DESELECTION_DELAY: 600,
+  SELECTION_DELAY: 60, // Reduced from 100ms
+  DESELECTION_DELAY: 350, // Reduced from 600ms
 } as const;
 
 const EASING_CURVES = {
@@ -21,10 +20,34 @@ const EASING_CURVES = {
   DECELERATE: [0.68, -0.6, 0.32, 1.6] as const,
 } as const;
 
+// Custom hook to detect screen size
+const useScreenSize = () => {
+  const [screenSize, setScreenSize] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      if (window.innerWidth <= 768) {
+        setScreenSize('mobile');
+      } else if (window.innerWidth <= 1024) {
+        setScreenSize('tablet');
+      } else {
+        setScreenSize('desktop');
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  return screenSize;
+};
+
 const NavElement: React.FC<NavElementProps> = ({ title, currentSection }) => {
   const isActive = currentSection === `#${title.toLowerCase()}`;
   const [wasActive, setWasActive] = useState(false);
   const [animationState, setAnimationState] = useState<AnimationState>('inactive');
+  const screenSize = useScreenSize();
 
   useEffect(() => {
     if (isActive && !wasActive) {
@@ -46,50 +69,90 @@ const NavElement: React.FC<NavElementProps> = ({ title, currentSection }) => {
     inactive: { 
       pathLength: 0.6,
       stroke: 'var(--dark-text-secondary)',
-      transition: { duration: 0.2, ease: "easeOut" }
+      transition: { duration: 0.15, ease: "easeOut" } // Reduced from 0.2
     },
     selecting: { 
       pathLength: 0.6,
       stroke: 'var(--dark-text-secondary)',
-      transition: { duration: 0.1, ease: "easeIn" }
+      transition: { duration: 0.08, ease: "easeIn" } // Reduced from 0.1
     },
     active: { 
       pathLength: 0.9, 
       stroke: 'var(--dark-accent-blue)',
-      transition: { duration: 0.6, ease: EASING_CURVES.SMOOTH }
+      transition: { duration: 0.4, ease: EASING_CURVES.SMOOTH } // Reduced from 0.6
     },
     deselecting: { 
       pathLength: 0.6,
       stroke: 'var(--dark-text-secondary)',
       transition: { 
-        pathLength: { duration: 0.6, ease: EASING_CURVES.DECELERATE },
-        stroke: { duration: 0.4, ease: "easeInOut", delay: 0.1 }
+        pathLength: { duration: 0.35, ease: EASING_CURVES.DECELERATE }, // Reduced from 0.6
+        stroke: { duration: 0.25, ease: "easeInOut", delay: 0.05 } // Reduced from 0.4 and 0.1
       }
     },
   }), []);
 
-  const textVariants = useMemo(() => ({
+  // Desktop variants with movement animations - Made faster
+  const desktopTextVariants = useMemo(() => ({
     inactive: { 
       paddingLeft: 0,
       color: 'var(--dark-text-secondary)',
-      transition: { duration: 0.25, ease: "easeOut" }
+      transition: { duration: 0.18, ease: "easeOut" } // Reduced from 0.25
     },
     selecting: { 
       paddingLeft: 0,
       color: 'var(--dark-text-secondary)',
-      transition: { duration: 0.1, ease: "easeIn" }
+      transition: { duration: 0.08, ease: "easeIn" } // Reduced from 0.1
     },
     active: { 
       paddingLeft: 10,
       color: 'var(--dark-accent-blue)',
-      transition: { duration: 0.5, ease: "easeOut", delay: 0.15 }
+      transition: { duration: 0.35, ease: "easeOut", delay: 0.1 } // Reduced from 0.5 and 0.15
     },
     deselecting: { 
       paddingLeft: 0,
       color: 'var(--dark-text-secondary)',
-      transition: { duration: 0.4, ease: "easeInOut" }
+      transition: { duration: 0.25, ease: "easeInOut" } // Reduced from 0.4
     }
   }), []);
+
+  // Tablet/Mobile variants with only color animations - Much faster
+  const responsiveTextVariants = useMemo(() => ({
+    inactive: { 
+      paddingLeft: 0, // No movement
+      color: 'var(--dark-text-secondary)',
+      transition: { 
+        paddingLeft: { duration: 0 }, // Instant, no animation
+        color: { duration: 0.12, ease: "easeOut" } // Much faster - reduced from 0.25
+      }
+    },
+    selecting: { 
+      paddingLeft: 0, // No movement
+      color: 'var(--dark-text-secondary)',
+      transition: { 
+        paddingLeft: { duration: 0 }, // Instant, no animation
+        color: { duration: 0.06, ease: "easeIn" } // Much faster - reduced from 0.1
+      }
+    },
+    active: { 
+      paddingLeft: 0, // No movement
+      color: 'var(--dark-accent-blue)',
+      transition: { 
+        paddingLeft: { duration: 0 }, // Instant, no animation
+        color: { duration: 0.2, ease: "easeOut", delay: 0.05 } // Much faster - reduced from 0.5 and 0.15
+      }
+    },
+    deselecting: { 
+      paddingLeft: 0, // No movement
+      color: 'var(--dark-text-secondary)',
+      transition: { 
+        paddingLeft: { duration: 0 }, // Instant, no animation
+        color: { duration: 0.15, ease: "easeInOut" } // Much faster - reduced from 0.4
+      }
+    }
+  }), []);
+
+  // Choose variants based on screen size
+  const textVariants = screenSize === 'mobile' ? responsiveTextVariants : desktopTextVariants;
 
   return (
     <motion.nav className={styles.navElement}>
